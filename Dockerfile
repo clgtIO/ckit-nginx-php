@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Hoa Nguyen <hoa.nguyenmanh@tiki.vn>
+MAINTAINER Duc An <me@clgt.io>
 
 # ENV
 ENV DEBIAN_FRONTEND noninteractive
