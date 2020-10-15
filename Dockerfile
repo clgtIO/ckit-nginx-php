@@ -22,14 +22,12 @@ RUN apt-get update \
     && apt-get autoclean \
     && rm -vf /var/lib/apt/lists/*.* /tmp/* /var/tmp/*
 
-# nginx php newrelic
+# nginx php
 RUN add-apt-repository -y ppa:nginx/stable \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
-    && apt-get install -y build-essential \
     zlib1g-dev \
     vim \
-    unzip \
     sudo \
     dialog \
     net-tools \
@@ -47,20 +45,14 @@ RUN add-apt-repository -y ppa:nginx/stable \
     php7.4-json \
     php7.4-ldap \
     php7.4-mbstring \
-    php7.4-memcache \
-    php7.4-memcached \
     php7.4-mongo \
     php7.4-mysqlnd \
     php7.4-pgsql \
     php7.4-redis \
-    php7.4-sqlite \
     php7.4-xml \
-    php7.4-xmlrpc \
-    php7.4-zip \
     php7.4-soap \
     php7.4-amqp \
 && phpdismod xdebug opcache \
-&& (curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-bionic-td-agent3.sh | sh) \
 && mkdir /run/php && chown www-data:www-data /run/php \
 && apt-get autoclean \
 && rm -vf /var/lib/apt/lists/*.* /var/tmp/*
@@ -73,14 +65,6 @@ RUN git clone -b 0.1.9 --recursive --depth=1 https://github.com/kjdev/php-ext-sn
     && echo "extension=snappy.so" > /etc/php/7.4/mods-available/snappy.ini \
     && phpenmod snappy \
     && cd .. && rm -rf php-ext-snappy
-
-# Install GRPC & Protobuf
-RUN pecl install grpc \
-    && echo "extension=grpc.so" > /etc/php/7.4/mods-available/grpc.ini \
-    && phpenmod grpc \
-    && pecl install protobuf \
-    && echo "extension=protobuf.so" > /etc/php/7.4/mods-available/protobuf.ini \
-    && phpenmod protobuf
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
