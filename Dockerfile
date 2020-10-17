@@ -69,7 +69,6 @@ RUN git clone -b 0.1.9 --recursive --depth=1 https://github.com/kjdev/php-ext-sn
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 && apt-get autoclean \
 && rm -vf /var/lib/apt/lists/*.*
-# Install Beeinstant metric monitoring
 
 # configuration
 COPY conf/nginx/vhost.conf /etc/nginx/sites-available/default
