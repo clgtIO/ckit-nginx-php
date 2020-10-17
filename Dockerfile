@@ -56,15 +56,6 @@ RUN add-apt-repository -y ppa:nginx/stable \
 && apt-get autoclean \
 && rm -vf /var/lib/apt/lists/*.* /var/tmp/*
 
-# Install php-snappy
-RUN git clone -b 0.1.9 --recursive --depth=1 https://github.com/kjdev/php-ext-snappy.git \
-    && cd php-ext-snappy \
-    && phpize \
-    && ./configure && make && make install \
-    && echo "extension=snappy.so" > /etc/php/7.4/mods-available/snappy.ini \
-    && phpenmod snappy \
-    && cd .. && rm -rf php-ext-snappy
-
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 && apt-get autoclean \
