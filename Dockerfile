@@ -26,6 +26,7 @@ RUN apt-get update \
 RUN add-apt-repository -y ppa:nginx/stable \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
+    && apt-get install -y \
     zlib1g-dev \
     vim \
     sudo \
@@ -39,13 +40,11 @@ RUN add-apt-repository -y ppa:nginx/stable \
     php7.4-bcmath \
     php7.4-curl \
     php7.4-gd \
-    php7.4-geoip \
     php7.4-imagick \
     php7.4-intl \
     php7.4-json \
     php7.4-ldap \
     php7.4-mbstring \
-    php7.4-mongo \
     php7.4-mysqlnd \
     php7.4-pgsql \
     php7.4-redis \
